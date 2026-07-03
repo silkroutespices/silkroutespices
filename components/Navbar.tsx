@@ -42,9 +42,9 @@ export default function Navbar() {
           <Image
             src="/logo-horizontal.png"
             alt="Silk Route Spices"
-            width={320}
-            height={100}
-            style={{ height: 64, width: "auto", objectFit: "contain", maxWidth: 280 }}
+            width={1536}
+            height={1024}
+            style={{ height: 110, width: "auto", objectFit: "contain", maxWidth: 420 }}
             priority
           />
         </Link>
