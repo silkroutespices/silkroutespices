@@ -15,6 +15,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <div style={{ background: "var(--cream)" }}>
+
       {/* Hero */}
       <div style={{
         background: `linear-gradient(135deg, var(--brown-deep), var(--brown-mid))`,
@@ -40,55 +41,99 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           margin: "0 auto 1rem",
           lineHeight: 1.25,
         }}>{post.title}</h1>
-        <p style={{ fontSize: 12, color: "var(--brown-light)", fontFamily: "'Inter', sans-serif", letterSpacing: 1 }}>
+        <p style={{
+          fontSize: 12, color: "var(--brown-light)",
+          fontFamily: "'Inter', sans-serif", letterSpacing: 1,
+        }}>
           {post.date} · {post.readTime}
         </p>
       </div>
 
-      {/* Content */}
-      <div style={{ maxWidth: 740, margin: "0 auto", padding: "3.5rem 1.5rem" }}>
+      {/* Article content */}
+      <div style={{ maxWidth: 780, margin: "0 auto", padding: "3.5rem 2rem" }}>
+
+        {/* Pull quote / excerpt */}
         <p style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Lora', Georgia, serif",
           fontSize: 20,
           fontStyle: "italic",
           color: "var(--brown-mid)",
-          lineHeight: 1.7,
+          lineHeight: 1.75,
           marginBottom: "2.5rem",
           paddingBottom: "2rem",
           borderBottom: "1px solid var(--cream-dark)",
         }}>{post.excerpt}</p>
 
-        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, color: "var(--brown-deep)", lineHeight: 1.85 }}>
+        {/* Body content */}
+        <div>
           {paragraphs.map((line, i) => {
             if (line.startsWith("## ")) {
               return (
                 <h2 key={i} style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: 26,
+                  fontSize: 28,
                   fontWeight: 600,
                   color: "var(--brown-deep)",
-                  marginTop: "2.5rem",
-                  marginBottom: "1rem",
+                  marginTop: "3rem",
+                  marginBottom: "1.25rem",
                   paddingTop: "0.5rem",
                   borderTop: "1px solid var(--cream-dark)",
+                  lineHeight: 1.3,
                 }}>{line.replace("## ", "")}</h2>
               );
             }
             return (
-              <p key={i} style={{ marginBottom: "1.25rem", color: "var(--brown-mid)" }}>{line}</p>
+              <p key={i} style={{
+                fontFamily: "'Lora', Georgia, serif",
+                fontSize: 18,
+                color: "var(--brown-mid)",
+                lineHeight: 1.9,
+                marginBottom: "1.5rem",
+                letterSpacing: "0.01em",
+              }}>{line}</p>
             );
           })}
         </div>
 
-        <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--cream-dark)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link href="/blog" style={{ fontSize: 14, color: "var(--green-dark)", textDecoration: "none", fontWeight: 600, fontFamily: "'Inter', sans-serif" }}>
+        {/* Footer navigation */}
+        <div style={{
+          marginTop: "4rem",
+          paddingTop: "2rem",
+          borderTop: "1px solid var(--cream-dark)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}>
+          <Link href="/blog" style={{
+            fontSize: 14, color: "var(--green-dark)",
+            textDecoration: "none", fontWeight: 600,
+            fontFamily: "'Inter', sans-serif",
+          }}>
             ← All Stories
           </Link>
-          <Link href="/" style={{ fontSize: 14, color: "var(--brown-light)", textDecoration: "none", fontFamily: "'Inter', sans-serif" }}>
+          <Link href="/" style={{
+            fontSize: 13, color: "var(--brown-light)",
+            textDecoration: "none",
+            fontFamily: "'Inter', sans-serif",
+            fontStyle: "italic",
+          }}>
             silkroutespices.com
           </Link>
         </div>
       </div>
+
+      {/* Load Lora font */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+        @media (max-width: 600px) {
+          div[style*="padding: 3.5rem 2rem"] {
+            padding: 2.5rem 1.25rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
